@@ -102,7 +102,7 @@ foreach (chr = 1:length(chromosome)) %do% {
     c(output_file, chromosome[chr]),
     collapse = ""
   )
-  print(command)
+  print(paste(command))
   system(paste(command))
   
 }
