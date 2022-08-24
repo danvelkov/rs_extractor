@@ -99,8 +99,9 @@ foreach (chr = 1:length(chromosome)) %do% {
     " --regions ",
     chromosome[chr],
     "> ",
-    c(output_file, "_chr", chromosome[chr]),
+    output_file, "_chr", chromosome[chr]
   )
+  
   print(command)
   system(command)
   
