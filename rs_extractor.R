@@ -119,7 +119,7 @@ foreach (chr = 1:length(chromosome)) %do% {
 }
 
 foreach (file = 1:length(chromosome_files_dir)) %do% {
-  print(file)
+  print(is.character(chromosome_files_dir[file]))
   print(chromosome_files_dir[file])
   # load of vcf file
   vcf <-
