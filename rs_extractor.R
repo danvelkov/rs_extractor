@@ -89,7 +89,7 @@ invisible(foreach (row_count = 1:nrow(records), .packages = 'filelock') %dopar% 
   # writing to file with simple lock for concurrency
   lck <- lock("/tmp/anno_file.lock")
   write(line,
-        anno_file, append = TRUE)
+        output_file, append = TRUE)
   unlock(lck)
 })
 
