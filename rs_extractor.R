@@ -90,8 +90,8 @@ chromosome = list(1,
 
 
 # create output directory if it doesn't exist
-if (!dir.exists(paste(dirname(output_file), "/separeted_chromosomes"), sep=""))
-  dir.create(paste(dirname(output_file), "/separeted_chromosomes"))
+if (!dir.exists(paste(dirname(output_file), "/separeted_chromosomes", sep="")))
+  dir.create(paste(paste(dirname(output_file), "/separeted_chromosomes", sep="")))
 
 # separting chromosomes into different files
 foreach (chr = 1:length(chromosome)) %do% {
