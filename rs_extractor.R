@@ -87,10 +87,11 @@ chromosome = list(1,
                   "X",
                   "Y")
 
-# foreach (chr = 1:length(chromosome)) %do% {
-#   print(chromosome[chr])
-# 
-# }
+
+# create output directory if it doesn't exist
+if (!dir.exists(dir_name))
+  dir.create(dir_name)
+
 
 foreach (chr = 1:length(chromosome)) %do% {
   command <- paste(
@@ -100,17 +101,13 @@ foreach (chr = 1:length(chromosome)) %do% {
     chromosome[chr],
     "> ",
     output_file, "_chr", chromosome[chr]
-  )
+  , sep= "")
   
   print(command)
   system(command)
   
 }
 
-# # create output directory if it doesn't exist
-# if (!dir.exists(dir_name))
-#   dir.create(dir_name)
-# 
 # # load of vcf file
 # vcf <-
 #   read.vcfR(input_file)
