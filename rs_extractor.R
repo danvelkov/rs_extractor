@@ -2,7 +2,8 @@
 # automatic install of packages if they are not installed already
 list.of.packages <- c(
   "vcfR",
-  "optparse"
+  "optparse",
+  "doParallel"
 )
 
 new.packages <-
