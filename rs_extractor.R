@@ -1,10 +1,9 @@
 
+
 # automatic install of packages if they are not installed already
-list.of.packages <- c(
-  "vcfR",
-  "optparse",
-  "doParallel"
-)
+list.of.packages <- c("vcfR",
+                      "optparse",
+                      "doParallel")
 
 new.packages <-
   list.of.packages[!(list.of.packages %in% installed.packages()[, "Package"])]
@@ -63,31 +62,69 @@ input_file = opt$input
 output_file = opt$output
 dir_name = normalizePath(dirname(output_file))
 
+chromosome = c(1,
+               2,
+               3,
+               4,
+               5,
+               6,
+               7,
+               8,
+               9,
+               10,
+               11,
+               12,
+               13,
+               14,
+               15,
+               16,
+               17,
+               18,
+               19,
+               20,
+               21,
+               22,
+               "X",
+               "Y")
 
-# create output directory if it doesn't exist
-if (!dir.exists(dir_name))
-  dir.create(dir_name)
 
-# load of vcf file
-vcf <-
-  read.vcfR(input_file)
-
-records <-
-  getFIX(vcf, getINFO = TRUE)
-
-# extracting the annotation data containing id, chr, positions 
-# and adding link to existing reference SNPs or clinical significance Clinvar reference
-foreach (row_count = 1:nrow(records)) %do% {
-  line <- c()
-  
-  elem_name <- records[row_count, 3]
-  print(elem_name)
-  
-  line <-
-    paste(c(elem_name),
-          collapse = "\n")
-  
-  write(line,
-        output_file, append = TRUE)
+foreach (chr = 1:nrow(chromosome)) %do% {
+  system(c(
+    "bcftools view ",
+    input_file,
+    " --regions ",
+    chromosome[chr],
+    "> ",
+    c(output_file, chromosome[chr]),
+    collapse = ""
+  ))
   
 }
+
+# # create output directory if it doesn't exist
+# if (!dir.exists(dir_name))
+#   dir.create(dir_name)
+# 
+# # load of vcf file
+# vcf <-
+#   read.vcfR(input_file)
+# 
+# records <-
+#   getFIX(vcf, getINFO = TRUE)
+# 
+# # extracting the annotation data containing id, chr, positions
+# # and adding link to existing reference SNPs or clinical significance Clinvar reference
+# foreach (row_count = 1:nrow(records)) %do% {
+#   line <- c()
+#   
+#   elem_name <- records[row_count, 3]
+#   print(elem_name)
+#   
+#   line <-
+#     paste(c(elem_name),
+#           collapse = "\n")
+#   
+#   write(line,
+#         output_file, append = TRUE)
+#   
+# }
