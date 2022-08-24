@@ -78,6 +78,7 @@ records <-
 # extracting the annotation data containing id, chr, positions 
 # and adding link to existing reference SNPs or clinical significance Clinvar reference
 foreach (row_count = 1:nrow(records), .packages = 'filelock') %dopar% {
+  print("in")
   line <- c()
   
   elem_name <- records[row_count, 3]
