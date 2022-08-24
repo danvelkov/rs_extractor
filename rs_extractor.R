@@ -114,16 +114,16 @@ foreach (chr = 1:length(chromosome)) %do% {
     sep= "")
   
   chromosome_files_dir <- c(chromosome_files_dir, file_name)
-  # print(command)
+  print(command)
   system(command)
 }
 
 foreach (file = 1:length(chromosome_files_dir)) %do% {
-  print(typeof(chromosome_files_dir[file][[1]]))
+  # print(typeof(chromosome_files_dir[file][[1]]))
   print(chromosome_files_dir[file][[1]])
   # load of vcf file
   vcf <-
-    read.vcfR(chromosome_files_dir[file])
+    read.vcfR(chromosome_files_dir[file][[1]])
 
   records <-
     getFIX(vcf, getINFO = TRUE)
