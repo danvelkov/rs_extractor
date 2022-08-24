@@ -77,7 +77,7 @@ records <-
 
 # extracting the annotation data containing id, chr, positions 
 # and adding link to existing reference SNPs or clinical significance Clinvar reference
-invisible(foreach (row_count = 1:nrow(records), .packages = 'filelock') %dopar% {
+foreach (row_count = 1:nrow(records), .packages = 'filelock') %dopar% {
   line <- c()
   
   elem_name <- records[row_count, 3]
@@ -91,7 +91,7 @@ invisible(foreach (row_count = 1:nrow(records), .packages = 'filelock') %dopar% 
   write(line,
         output_file, append = TRUE)
   unlock(lck)
-})
+}
 
 #stop cluster
 parallel::stopCluster(cl = my.cluster)
