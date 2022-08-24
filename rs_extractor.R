@@ -87,13 +87,13 @@ chromosome = list(1,
                   "X",
                   "Y")
 
-foreach (chr = 1:length(chromosome)) %do% {
-  print(chromosome[chr])
+# foreach (chr = 1:length(chromosome)) %do% {
+#   print(chromosome[chr])
+# 
+# }
 
-}
-
 foreach (chr = 1:length(chromosome)) %do% {
-  system(paste(c(
+  command <- c(
     "bcftools view ",
     input_file,
     " --regions ",
@@ -101,7 +101,9 @@ foreach (chr = 1:length(chromosome)) %do% {
     "> ",
     c(output_file, chromosome[chr]),
     collapse = ""
-  )))
+  )
+  print(command)
+  system(paste(command))
   
 }
 
