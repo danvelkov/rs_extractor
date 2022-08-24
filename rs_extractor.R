@@ -113,7 +113,7 @@ foreach (chr = 1:length(chromosome)) %do% {
     file_name, 
     sep= "")
   
-  chromosome_files_dir <- append(chromosome_files_dir, file_name)
+  chromosome_files_dir <- c(chromosome_files_dir, file_name)
   print(command)
   system(command)
 }
