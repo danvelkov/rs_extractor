@@ -93,24 +93,27 @@ chromosome = list(1,
 if (!dir.exists(paste(dirname(output_file), "/separeted_chromosomes", sep="")))
   dir.create(paste(paste(dirname(output_file), "/separeted_chromosomes", sep="")))
 
+chromosome_files_dir <- list()
+
 # separting chromosomes into different files
 foreach (chr = 1:length(chromosome)) %do% {
+  file_name <- paste(dirname(output_file),
+                     "/separeted_chromosomes/",
+                     basename(output_file), "_chr", chromosome[chr], sep="")
+  
   command <- paste(
     "bcftools view ",
     input_file,
     " --regions ",
     chromosome[chr],
     " > ",
-    dirname(output_file),
-    "/separeted_chromosomes/",
-    basename(output_file), "_chr", chromosome[chr], 
+    file_name, 
     sep= "")
   
+  chromosome_files_dir <- append(chromosome_files_dir, file_name)
   print(command)
   system(command)
 }
-
-
 
 # # load of vcf file
 # vcf <-
