@@ -62,6 +62,7 @@ input_file = opt$input
 output_file = opt$output
 dir_name = normalizePath(dirname(output_file))
 
+# list of chromosomes
 chromosome = list(1,
                   2,
                   3,
@@ -92,7 +93,7 @@ chromosome = list(1,
 if (!dir.exists(dir_name))
   dir.create(dir_name)
 
-
+# separting chromosomes into different files
 foreach (chr = 1:length(chromosome)) %do% {
   command <- paste(
     "bcftools view ",
@@ -100,13 +101,15 @@ foreach (chr = 1:length(chromosome)) %do% {
     " --regions ",
     chromosome[chr],
     " > ",
+    "separeted_chromosomes/",
     output_file, "_chr", chromosome[chr]
-  , sep= "")
+    , sep= "")
   
   print(command)
   system(command)
-  
 }
+
+
 
 # # load of vcf file
 # vcf <-
