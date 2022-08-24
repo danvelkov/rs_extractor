@@ -115,6 +115,8 @@ foreach (chr = 1:length(chromosome)) %do% {
   system(command)
 }
 
+print(chromosome_files_dir)
+
 # # load of vcf file
 # vcf <-
 #   read.vcfR(input_file)
