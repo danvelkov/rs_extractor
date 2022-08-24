@@ -62,7 +62,7 @@ input_file = opt$input
 output_file = opt$output
 dir_name = normalizePath(dirname(output_file))
 
-chromosome = c(1,
+chromosome = list(1,
                2,
                3,
                4,
