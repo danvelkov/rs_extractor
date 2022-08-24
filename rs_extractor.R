@@ -93,7 +93,7 @@ foreach (chr = 1:length(chromosome)) %do% {
 }
 
 foreach (chr = 1:length(chromosome)) %do% {
-  system(c(
+  system(paste(c(
     "bcftools view ",
     input_file,
     " --regions ",
@@ -101,7 +101,7 @@ foreach (chr = 1:length(chromosome)) %do% {
     "> ",
     c(output_file, chromosome[chr]),
     collapse = ""
-  ))
+  )))
   
 }
 
