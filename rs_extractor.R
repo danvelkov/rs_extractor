@@ -87,10 +87,10 @@ chromosome = list(1,
                   "X",
                   "Y")
 
-# foreach (chr = 1:length(chromosome)) %do% {
-#   print(chromosome[chr])
-#   
-# }
+foreach (chr = 1:length(chromosome)) %do% {
+  print(chromosome[chr])
+
+}
 
 foreach (chr = 1:length(chromosome)) %do% {
   system(c(
