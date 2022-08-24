@@ -99,7 +99,7 @@ if (!dir.exists(paste(dirname(output_file),"/chromosome_accessions/", sep="")))
 chromosome_files_dir <- list()
 
 # separating chromosomes into different files
-invisible(foreach (chr = 1:length(chromosome)) %do% {
+foreach (chr = 1:length(chromosome)) %do% {
   file_name <- paste(dirname(output_file),
                      "/separated_chromosomes/",
                      basename(output_file), "_chr", chromosome[chr], sep="")
@@ -116,11 +116,11 @@ invisible(foreach (chr = 1:length(chromosome)) %do% {
   chromosome_files_dir <- c(chromosome_files_dir, file_name)
   # print(command)
   system(command)
-})
+}
 
 foreach (file = 1:length(chromosome_files_dir)) %do% {
-  print(typeof(chromosome_files_dir[file][1]))
-  print(chromosome_files_dir[file][1])
+  print(typeof(chromosome_files_dir[file][[1]]))
+  print(chromosome_files_dir[file][[1]])
   # load of vcf file
   vcf <-
     read.vcfR(chromosome_files_dir[file])
