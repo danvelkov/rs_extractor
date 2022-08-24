@@ -93,6 +93,9 @@ chromosome = list(1,
 if (!dir.exists(paste(dirname(output_file), "/separeted_chromosomes", sep="")))
   dir.create(paste(paste(dirname(output_file), "/separeted_chromosomes", sep="")))
 
+if (!dir.exists(paste(dirname(output_file),"/chromosome_accessions/", sep="")))
+  dir.create(paste(paste(dirname(output_file), "/chromosome_accessions/", sep="")))
+
 chromosome_files_dir <- list()
 
 # separting chromosomes into different files
