@@ -101,7 +101,7 @@ foreach (chr = 1:length(chromosome)) %do% {
     " --regions ",
     chromosome[chr],
     " > ",
-    dir_name,
+    dirname(output_file),
     "separeted_chromosomes/",
     basename(output_file), "_chr", chromosome[chr], 
     sep= "")
