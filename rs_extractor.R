@@ -87,12 +87,12 @@ chromosome = list(1,
                "X",
                "Y")
 
-foreach (chr = 1:length(chromosome)) %do% {
-  print(chromosome[chr])
-  
-}
+# foreach (chr = 1:length(chromosome)) %do% {
+#   print(chromosome[chr])
+#   
+# }
 
-foreach (chr = 1:nrow(chromosome)) %do% {
+foreach (chr = 1:length(chromosome)) %do% {
   system(c(
     "bcftools view ",
     input_file,
