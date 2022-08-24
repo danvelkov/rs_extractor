@@ -87,6 +87,10 @@ chromosome = c(1,
                "X",
                "Y")
 
+foreach (chr = 1:nrow(chromosome)) %do% {
+  print(chromosome[chr])
+  
+}
 
 foreach (chr = 1:nrow(chromosome)) %do% {
   system(c(
