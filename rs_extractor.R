@@ -129,7 +129,7 @@ foreach (file = 1:length(chromosome_files_dir)) %do% {
     line <- c()
 
     elem_name <- records[row_count, 3]
-    print(elem_name)
+    # print(elem_name)
 
     line <-
       paste(c(elem_name),
