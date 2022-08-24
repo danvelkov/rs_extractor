@@ -77,22 +77,17 @@ records <-
 
 # extracting the annotation data containing id, chr, positions 
 # and adding link to existing reference SNPs or clinical significance Clinvar reference
-foreach (row_count = 1:nrow(records), .packages = 'filelock') %dopar% {
+foreach (row_count = 1:nrow(records)) {
   print("in")
   line <- c()
   
   elem_name <- records[row_count, 3]
-
+  
   line <-
     paste(c(elem_name),
           collapse = "\n")
-
-  # writing to file with simple lock for concurrency
-  lck <- lock("/tmp/anno_file.lock")
+  
   write(line,
         output_file, append = TRUE)
-  unlock(lck)
+  
 }
-
-#stop cluster
-parallel::stopCluster(cl = my.cluster)
