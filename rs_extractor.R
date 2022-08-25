@@ -123,9 +123,9 @@ print(chromosome_files_dir)
 foreach (file = 1:length(chromosome_files_dir)) %do% {
   print(chromosome_files_dir[file][[1]])
   
-  file_name <- paste(dirname(chromosome_files_dir[file][[1]]),
+  file_name <- paste(dirname(output_file),
                      "/chromosome_accessions/",
-                     basename(chromosome_files_dir[file][[1]]), "_chr", chromosome[file], "_accession", sep="")
+                     basename(output_file), "_chr", chromosome[file], "_accession", sep="")
   
   command <- paste(
     "bcftools query -f '%ID\n'",
