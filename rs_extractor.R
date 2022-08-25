@@ -118,6 +118,8 @@ foreach (chr = 1:length(chromosome)) %do% {
   system(command)
 }
 
+print(chromosome_files_dir)
+
 foreach (file = 1:length(chromosome_files_dir)) %do% {
   print(chromosome_files_dir[file][[1]])
   
