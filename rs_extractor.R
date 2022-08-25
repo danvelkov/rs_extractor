@@ -131,6 +131,7 @@ foreach (file = 1:length(chromosome_files_dir)) %do% {
     " > ",
     file_name, 
     sep= "")
-  system(command)
   
+  print(command)
+  system(command)
 }
