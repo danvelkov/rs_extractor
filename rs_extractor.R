@@ -129,7 +129,7 @@ foreach (file = 1:length(chromosome_files_dir)) %do% {
   
   command <- paste(
     "bcftools query -f '%ID\n' ",
-    input_file,
+    chromosome_files_dir[file][[1]],
     " > ",
     file_name, 
     sep= "")
