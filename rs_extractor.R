@@ -1,8 +1,7 @@
 
 
 # automatic install of packages if they are not installed already
-list.of.packages <- c("vcfR",
-                      "optparse",
+list.of.packages <- c("optparse",
                       "doParallel")
 
 new.packages <-
@@ -128,7 +127,7 @@ foreach (file = 1:length(chromosome_files_dir)) %do% {
                      basename(output_file), "_chr", chromosome[file], "_accession", sep="")
   
   command <- paste(
-    "bcftools query -f '%ID\n' ",
+    "bcftools query -f '%CHROM:%POS:%REF:%ALT\n' ",
     chromosome_files_dir[file][[1]],
     " > ",
     file_name, 
