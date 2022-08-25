@@ -119,57 +119,18 @@ foreach (chr = 1:length(chromosome)) %do% {
 }
 
 foreach (file = 1:length(chromosome_files_dir)) %do% {
-  # print(typeof(chromosome_files_dir[file][[1]]))
   print(chromosome_files_dir[file][[1]])
-  # load of vcf file
-  vcf <-
-    read.vcfR(chromosome_files_dir[file][[1]])
-
-  records <-
-    getFIX(vcf, getINFO = TRUE)
-
-  # extracting the annotation data containing id, chr, positions
-  # and adding link to existing reference SNPs or clinical significance Clinvar reference
-  foreach (row_count = 1:nrow(records)) %do% {
-    line <- c()
-
-    elem_name <- records[row_count, 3]
-    # print(elem_name)
-
-    line <-
-      paste(c(elem_name),
-            collapse = "\n")
-    
-    file_name <- paste(dirname(output_file),
-                       "/chromosome_accessions/",
-                       basename(output_file), "_chr", chromosome[chr], "_accession", sep="")
-    
-    write(line,
-          output_file, append = TRUE)
-
-  }
+  
+  file_name <- paste(dirname(output_file),
+                     "/chromosome_accessions/",
+                     basename(output_file), "_chr", chromosome[chr], "_accession", sep="")
+  
+  command <- paste(
+    "bcftools query -f '%ID\n'",
+    input_file,
+    " > ",
+    file_name, 
+    sep= "")
+  system(command)
+  
 }
-
-# # load of vcf file
-# vcf <-
-#   read.vcfR(input_file)
-# 
-# records <-
-#   getFIX(vcf, getINFO = TRUE)
-# 
-# # extracting the annotation data containing id, chr, positions
-# # and adding link to existing reference SNPs or clinical significance Clinvar reference
-# foreach (row_count = 1:nrow(records)) %do% {
-#   line <- c()
-#   
-#   elem_name <- records[row_count, 3]
-#   print(elem_name)
-#   
-#   line <-
-#     paste(c(elem_name),
-#           collapse = "\n")
-#   
-#   write(line,
-#         output_file, append = TRUE)
-#   
-# }
